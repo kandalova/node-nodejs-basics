@@ -2,10 +2,17 @@ import path from 'path';
 import * as url from 'url';
 import { release, version } from 'node:os';
 import * as http from 'http'
+import { readFile } from 'fs/promises';
 
-import aFile from "./files/a.json" assert { type: "json" };
-import bFile from "./files/b.json" assert { type: "json" };
-import cFile from "./files/b.json" assert { type: "json" };
+const getJSON = async function(path){
+	return JSON.parse(
+  await readFile(
+    new URL(path, import.meta.url)
+  )
+)};
+
+const bFile = await getJSON('./files/b.json');
+const aFile = await getJSON('./files/a.json');
 
 const random = Math.random();
 
