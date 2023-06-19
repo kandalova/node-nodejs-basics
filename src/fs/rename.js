@@ -22,7 +22,7 @@ const rename = async () => {
             console.log("The file has been renamed!")
         })
         .catch((err) => {
-            throwFSError();
+            console.error(err);
         })
 };
 
